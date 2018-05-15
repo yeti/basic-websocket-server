@@ -1,0 +1,4 @@
+aioredis==0.3.0
+appdirs==1.4.0
+hiredis==0.2.0
+websockets==3.2
