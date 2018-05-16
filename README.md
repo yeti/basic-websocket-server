@@ -19,13 +19,14 @@ SSH into your cloud VPS _as `root`_. Then do the following:
 
 ```
 mkdir /server
-git clone git@github.com:yeti/basic-websocket-server.git /server
+git clone git://github.com/yeti/basic-websocket-server.git /server
+mv /server/src/* /server
 . /server/setup/setup.sh
 ```
 
 Then run the PUBSUB servers!
 ```
-python /server/publisher.py & python /server/subscriber.py &
+python /server/src/publisher.py & python /server/src/subscriber.py &
 ```
 
 ## How do I try this out locally?
@@ -34,15 +35,17 @@ Have the following things installed on your local machine:
 * Vagrant
 * Docker (if on Mac, do Docker for Mac and make sure it's running)
 
-Then, run the following:
+Fork a copy of the websocket server from [here](https://github.com/yeti/basic-websocket-server.git). Then, run the following:
 
 ```
-git clone git@github.com:yeti/basic-websocket-server.git
+git clone git@github.com:<your-username>/basic-websocket-server.git
 cd basic-websocket-server
 vagrant up
 ```
 
-Vagrant automatically runs `/server/setup/setup.sh`. To run the server:
+Vagrant automatically runs `/server/setup/setup.sh` in its provisioning sequence.
+
+To run the server:
 ```
 vagrant ssh
 sudo su
