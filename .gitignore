@@ -1,1 +1,4 @@
 /.vagrant
+__pycache__
+/.idea
+/.idea/*

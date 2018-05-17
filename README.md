@@ -35,7 +35,9 @@ Have the following things installed on your local machine:
 * Vagrant
 * Docker (if on Mac, do Docker for Mac and make sure it's running)
 
-Fork a copy of the websocket server from [here](https://github.com/yeti/basic-websocket-server.git). Then, run the following:
+Fork a copy of the websocket server from [here](https://github.com/yeti/basic-websocket-server.git).
+
+Then, run the following:
 
 ```
 git clone git@github.com:<your-username>/basic-websocket-server.git
@@ -53,5 +55,34 @@ python /server/publisher.py & python /server/subscriber.py &
 ```
 
 ## How to Contribute
+
 Fork this project and follow the `How do I try this out locally?` instructions
 to have a local copy to test and work on.
+
+## Authentication/Authorization
+
+This server accepts Basic Authentication through the request header, ONLY IF the
+ `AUTHORIZATION_TOKEN` env var is set while running. If `AUTHORIZATION_TOKEN` is
+not set, then the server is completely public.
+
+`AUTHORIZATION_TOKEN` must be an Argon2 hash of the desired username and
+password sent through Basic Authentication. To generate it, have Python interpret
+the `print_argon2_token.py` file directly like so:
+
+```
+python /path/to/print_argon2_token.py <username>:<password>
+```
+
+This will print out the token that you can then set `AUTHORIZATION_TOKEN` to.
+
+## Configuration Files
+
+* `src/ws.conf`: This is the Nginx configuration for the Websocket Servers. On
+                 production, feel free to edit this to do things like enable
+                 encryption behind SSL.
+* `src/ws.ini`:  This is a Supervisor configuration. Since the websocket servers
+                 are written with Python 3.5.2 but Supervisor requires
+                 Python 2.6-2.7, it's slightly less intuitive to hook supervisor
+                 up well. It is possible however, since the `setup.sh` routine
+                 installs pyenv, to install Python 2.7 and setup Supervisor to
+                 point to this file.

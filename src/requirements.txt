@@ -1,4 +1,9 @@
 aioredis==0.3.0
 appdirs==1.4.0
+argon2-cffi==18.1.0
+cffi==1.11.5
 hiredis==0.2.0
-websockets==3.2
+passlib==1.7.1
+pycparser==2.18
+six==1.11.0
+websockets==4.0.1
