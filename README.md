@@ -61,12 +61,12 @@ to have a local copy to test and work on.
 
 ## Authentication/Authorization
 
-This server accepts a Base64-encoded '<username>:<password>' type string through the `Sec-WebSocket-Protocol` request
-handler, ONLY IF the `AUTHORIZATION_TOKEN` env var is set while running. If `AUTHORIZATION_TOKEN` is
+This server accepts a Base64-encoded '<username>:<password>' type string through a URL-param called `token`,
+ONLY IF the `AUTHORIZATION_TOKEN` env var is set while running. If `AUTHORIZATION_TOKEN` is
 not set, then the server is completely public.
 
 `AUTHORIZATION_TOKEN` must be an Argon2 hash of the desired username and
-password sent through `Sec-WebSocket-Protocol`. To generate it, have Python interpret
+password sent through the `token` URL-param. To generate it, have Python interpret
 the `print_argon2_token.py` file directly like so:
 
 ```

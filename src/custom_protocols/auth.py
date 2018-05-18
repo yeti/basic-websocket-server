@@ -10,12 +10,14 @@ class WSServerBasicAuthProtocol (WebSocketServerProtocol):
     Override to process authentication middleware
     '''
 
+    errors = []
+
     async def process_request(self, *args):
         _, request_headers = args
-        processed_protocol = run_middleware(self)
-        if len(processed_protocol.errors) > 0:
+        run_middleware(self)
+        if len(self.errors) > 0:
             return (
                 HTTPStatus.UNAUTHORIZED.value,
                 [],
-                bytes('Errors: {}'.format(dumps(processed_protocol.errors)), 'utf-8')
+                bytes('Errors: {}'.format(dumps(self.errors)), 'utf-8')
             )

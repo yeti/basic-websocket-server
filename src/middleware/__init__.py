@@ -6,8 +6,7 @@ middlewares = [
 
 
 def run_middleware(websocket):
-    websocket.errors = []
     for middleware in middlewares:
         if callable(middleware):
-            websocket = middleware(websocket)
+            middleware(websocket)
     return websocket
