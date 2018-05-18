@@ -6,7 +6,7 @@ from re import search
 BAD_AUTH_TOKEN_ERROR = 'Bad Authorization Token'
 NO_TOKEN_RECEIVED = 'Authorization token not received'
 
-TOKEN_PATTERN = r'\?.*token\=([^&/]+)'
+TOKEN_PATTERN = r'\?.*token\=([^&]+)'
 
 
 def _compare_tokens(b64_token1, argon2_token2):
@@ -20,7 +20,7 @@ def basic_auth(websocket):
     token_search = search(TOKEN_PATTERN, websocket.path)
     if our_token is not None:
         if token_search is not None:
-            authorization = token_search.group(1)
+            authorization = token_search.group(1).rstrip('/')
             if _compare_tokens(authorization, our_token):
                 return websocket
             else:
