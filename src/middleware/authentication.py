@@ -6,7 +6,7 @@ from re import search
 BAD_AUTH_TOKEN_ERROR = 'Bad Authorization Token'
 NO_TOKEN_RECEIVED = 'Authorization token not received'
 
-TOKEN_PATTERN = r'\?.*token\=([^&]+)'
+TOKEN_PATTERN = r'\?.*token\=([^&/]+)'
 
 
 def _compare_tokens(b64_token1, argon2_token2):
