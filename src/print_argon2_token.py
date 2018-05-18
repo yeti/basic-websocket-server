@@ -1,8 +1,10 @@
 from passlib.hash import argon2
 import sys
 
-def print_argon2_token(userpass):
-    print(argon2.hash(userpass))
+
+def print_argon2_token(password):
+    print(argon2.hash(password))
+
 
 if __name__ == '__main__':
     try:
