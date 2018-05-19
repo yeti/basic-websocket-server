@@ -14,11 +14,11 @@ async def publish_to_redis(msg, path):
     conn.close()
 
 
-async def server(websocket, path):
+async def server(websocket, _):
     try:
         while True:
             message = await websocket.recv()
-            await publish_to_redis(message, path)
+            await publish_to_redis(message, websocket.path)
             await asyncio.sleep(1)
     except websockets.exceptions.ConnectionClosed:
         print('Connection Closed!')

@@ -14,8 +14,8 @@ async def subscribe_to_redis(path):
     return channel, conn
 
 
-async def server(websocket, path):
-    channel, conn = await subscribe_to_redis(path)
+async def server(websocket, _):
+    channel, conn = await subscribe_to_redis(websocket.path)
     try:
         while True:
             message = await channel.get()

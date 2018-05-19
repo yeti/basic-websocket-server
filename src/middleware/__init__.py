@@ -1,7 +1,9 @@
 from middleware.authentication import basic_auth
+from middleware.cleaning import clean_path
 
 middlewares = [
-    basic_auth
+    basic_auth,
+    clean_path
 ]
 
 
