@@ -61,19 +61,13 @@ to have a local copy to test and work on.
 
 ## Authentication/Authorization
 
-This server accepts a Base64-encoded '<username>:<password>' type string through a URL-param called `token`,
+This server accepts a Base64-encoded '<username>:<password>' string through a URL-param called `token`,
 ONLY IF the `AUTHORIZATION_TOKEN` env var is set while running. If `AUTHORIZATION_TOKEN` is
 not set, then the server is completely public.
 
-`AUTHORIZATION_TOKEN` must be an Argon2 hash of the desired username and
-password sent through the `token` URL-param. To generate it, have Python interpret
-the `print_argon2_token.py` file directly like so:
+`AUTHORIZATION_TOKEN` must be a Base64-encoded '<username>:<password>' string that matches the desired username and
+password sent through the `token` URL-param in.
 
-```
-python /path/to/print_argon2_token.py <username>:<password>
-```
-
-This will print out the token that you can then set `AUTHORIZATION_TOKEN` to.
 
 ## Configuration Files
 

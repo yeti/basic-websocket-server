@@ -9,8 +9,10 @@ NO_TOKEN_RECEIVED = 'Authorization token not received'
 TOKEN_PATTERN = r'\?.*token\=([^&]+)'
 
 
-def _compare_tokens(b64_token1, argon2_token2):
+def _compare_tokens(b64_token1, b64_token2):
     token1 = b64decode(bytes(b64_token1, 'utf-8')).decode('utf-8')
+    token2 = b64decode(bytes(b64_token2, 'utf-8')).decode('utf-8')
+    argon2_token2 = argon2.hash(token2)
     result = argon2.verify(token1, argon2_token2)
     return result
 
