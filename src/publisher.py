@@ -9,7 +9,7 @@ async def publish_to_redis(msg, path):
     await conn.execute(
         'publish',
         '{}'.format(path),
-        '{}_merpmerp'.format(msg)
+        '{}'.format(msg)
     )
     conn.close()
 
