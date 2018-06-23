@@ -1,0 +1,32 @@
+version: "3"
+services:
+  publisher:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.publisher
+    depends_on:
+      - redis
+    environment:
+      - REDIS_HOST=redis
+  subscriber:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.subscriber
+    depends_on:
+      - redis
+    environment:
+      - REDIS_HOST=redis
+  nginx:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.nginx
+    depends_on:
+      - publisher
+      - subscriber
+    ports:
+      - "8766:8766"
+      - "8768:8768"
+  redis:
+    image: redis:alpine
+    ports: 
+      - "6379:6379"

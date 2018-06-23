@@ -1,0 +1,4 @@
+FROM nginx:alpine
+COPY ./src/ws.conf /etc/nginx/conf.d/ws.conf
+EXPOSE 8766
+EXPOSE 8768

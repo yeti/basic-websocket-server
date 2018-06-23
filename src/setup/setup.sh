@@ -5,4 +5,4 @@ cd /server/setup
 . ./installRedis.sh
 . ./pyenvSetup.sh
 . ./installPythonDeps.sh
-. ./nginxSetup.sh
+#. ./nginxSetup.sh

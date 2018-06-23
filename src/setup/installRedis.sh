@@ -18,10 +18,10 @@ mv redis.conf /etc/redis/6379.conf
 
 mkdir /var/redis/6379
 
-sudo update-rc.d redis_6379 defaults
+update-rc.d redis_6379 defaults
 
 echo "======> Starting Redis"
-sudo /etc/init.d/redis_6379 start
+/etc/init.d/redis_6379 start
 
 cd ../
 
